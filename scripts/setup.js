@@ -4,12 +4,13 @@ if (process.platform == "win32") {
 }
 
 var homedir = require('os').homedir();
+var path = require('path');
 var macPath = homedir + "/Library/Application Support/Mozilla/NativeMessagingHosts/patchfox.json";
 var linuxPath = homedir + "/.mozilla/native-messaging-hosts/patchfox.json";
 var manifestPath = process.platform == "darwin" ? macPath : linuxPath;
 var manifestFolderPath = manifestPath.replace("patchfox.json", "");
-var appPath = __dirname + "/index.js";
-var localManifestFile = __dirname + "/patchfox.json";
+var appPath = path.resolve("./host-app.js");
+var localManifestFile = path.resolve("./patchfox.json");
 var fs = require("fs");
 var mkdirp = require("mkdirp");
 
